@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6182836486563753557}
   - component: {fileID: 6246278852146579035}
   - component: {fileID: 3280230709001813456}
+  - component: {fileID: 4353521749939149998}
+  - component: {fileID: 3591475218156949668}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -103,6 +105,32 @@ MonoBehaviour:
   m_DefaultActionMap: Drive
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4353521749939149998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702225303435375854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55abe5064ced99a4984db3a7bd79257e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  txtMoneyAmount: {fileID: 0}
+--- !u!114 &3591475218156949668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702225303435375854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9a77a9c4faf704a856de6cb0bff2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  ownedCars: []
 --- !u!1 &3328434109246042412
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6641003134712667572, guid: 9bd3d4480a4511549b268f2f106454b0, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6645027097564869094, guid: 9bd3d4480a4511549b268f2f106454b0, type: 3}
       propertyPath: m_IsActive

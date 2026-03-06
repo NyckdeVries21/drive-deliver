@@ -10,4 +10,5 @@ public class Challenge : ScriptableObject
     public string ProductName;
     public string ProductAmount;
     public string Money;
+    public string XP;
 }

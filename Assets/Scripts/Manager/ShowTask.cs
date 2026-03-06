@@ -11,18 +11,18 @@ public class ShowTask : MonoBehaviour
     [SerializeField] private TextMeshProUGUI productAmount;
     [SerializeField] private TextMeshProUGUI rewards;
 
-    [SerializeField] private Challenge testChallenge;
+    [SerializeField] public Challenge challenge;
 
     [SerializeField] private GameObject map;
 
     private void Start()
     {
-        aDeliveryCompany.text = "Start: " + testChallenge.BCompanyname;
-        bDeliveryCompany.text = "Deliver at: " + testChallenge.BCompanyname;
-        distance.text = testChallenge.Distance + "km";
-        productName.text = testChallenge.ProductName;
-        productAmount.text = "Amount: " + testChallenge.ProductAmount;
-        rewards.text = "Receive: " + testChallenge.Money;
+        aDeliveryCompany.text = "Start: " + challenge.ACompanyname;
+        bDeliveryCompany.text = "Deliver at: " + challenge.BCompanyname;
+        distance.text = challenge.Distance + "km";
+        productName.text = challenge.ProductName;
+        productAmount.text = "Amount: " + challenge.ProductAmount;
+        rewards.text = "Receive: " + challenge.Money + '\n' + "XP: " + challenge.XP;
     }
 
     

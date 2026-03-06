@@ -11,4 +11,5 @@ public class PlayerStats : MonoBehaviour
 
     [Header("TextInputs")]
     [SerializeField] private TextMeshProUGUI txtMoneyAmount;
+    
 }

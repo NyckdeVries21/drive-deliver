@@ -66,16 +66,18 @@ public class Movement : MonoBehaviour
 
         Controls.Drive.Drive.performed += GetInput;
         Controls.Drive.Drive.canceled += GetInput;
-        
+
+        Controls.Drive.Brake.performed += ctx => isBraking = true;
+        Controls.Drive.Brake.canceled += ctx => isBraking = false;
 
         rb = GetComponentInChildren<Rigidbody>();
     }
 
     private void GetInput(InputAction.CallbackContext context)
     {
-        horizontalInput = context.ReadValue<Vector2>().x;
-        verticalInput = context.ReadValue<Vector2>().y;
-        isBraking = Input.GetKey(KeyCode.Space);
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontalInput = input.x;
+        verticalInput = input.y;
     }
 
     private void HandleMotor()
@@ -84,8 +86,6 @@ public class Movement : MonoBehaviour
         frontRightWC.motorTorque = verticalInput*motorForce;
 
         currentBrakeForce = isBraking? brakeForce: 0f;
-        ApplyBraking();
-
     }
 
     private void ApplyBraking()
