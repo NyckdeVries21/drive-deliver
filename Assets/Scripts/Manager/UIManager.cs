@@ -22,6 +22,18 @@ public class UIManager : MonoBehaviour
 
     [Header("Game Active?")]
     [SerializeField] private GameObject inGameUI;
+
+    [Header("Out Game UI")]
+    [SerializeField] private GameObject questMenu;
+    [SerializeField] private GameObject completedTask;
+    [SerializeField] private GameObject startMenu;
+    [SerializeField] private GameObject shop;
+    [SerializeField] private GameObject pInvStatsList;
+
+    [Header("Menu Texts")]
+    [SerializeField] private TextMeshProUGUI geldTxt;
+    [SerializeField] private TextMeshProUGUI currentCarTxt;
+    [SerializeField] private TextMeshProUGUI timeTxt;
     
 
     private void Update()
@@ -39,10 +51,14 @@ public class UIManager : MonoBehaviour
         if ( GameManager.instance.questActive == false)
         {
             inGameUI.SetActive(false);
+            startMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
         else
         {
             inGameUI.SetActive(true);
+            startMenu.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
@@ -94,4 +110,39 @@ public class UIManager : MonoBehaviour
         } else {saveDataMenu.SetActive(false); }
     }
 
+    public void OpenTaskList()
+    {
+        if (!questMenu.activeSelf)
+        {
+            questMenu.SetActive(true);
+        }
+        else { questMenu.SetActive(false); }
+    }
+
+    public void GoToShop()
+    {
+        if (!shop.activeSelf)
+        {
+            shop.SetActive(true);
+        } else {  shop.SetActive(false); }
+    }
+
+    public void ShowPlayerInvStats()
+    {
+        if (!pInvStatsList.activeSelf)
+        {
+            pInvStatsList.SetActive(true);
+        }
+        else { pInvStatsList.SetActive(false); }
+    }
+
+    private void UpdateMenuTexts()
+    {
+        PlayerStats playerStats = FindAnyObjectByType<PlayerStats>();
+        Player player = FindAnyObjectByType<Player>();
+
+        geldTxt.text = playerStats.moneyAmount.ToString();
+        currentCarTxt.text = player.currentCar.name;
+        timeTxt.text = dayTime.text;
+    }
 }

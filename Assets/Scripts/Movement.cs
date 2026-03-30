@@ -39,6 +39,18 @@ public class Movement : MonoBehaviour
 
     private Rigidbody rb;
 
+    private void Start()
+    {
+        frontLeftWC = GameObject.Find("FrontLeftCollider")?.GetComponent<WheelCollider>();
+        frontRightWC = GameObject.Find("FrontRightCollider")?.GetComponent<WheelCollider>();
+        rearLeftWC = GameObject.Find("RearLeftCollider")?.GetComponent<WheelCollider>();
+        rearRightWC = GameObject.Find("RearRightCollider")?.GetComponent<WheelCollider>();
+
+        frontLeftWT = GameObject.Find("PlayerFL")?.transform;
+        frontRightWT = GameObject.Find("PlayerFR")?.transform;
+        rearLeftWT = GameObject.Find("PlayerBL")?.transform;
+        rearRightWT = GameObject.Find("PlayerBR")?.transform;
+    }
     private void Update()
     {
         UpdateWheel();
@@ -47,6 +59,11 @@ public class Movement : MonoBehaviour
         GearSystem();
         if (SpeedText != null) SpeedText.text = ((int)currentSpeed) + " km/h";
         GearText.text = "" + Gear;
+
+        if(GameManager.instance.questActive == false)
+        {
+            currentSpeed = 0;
+        }
     }
 
     private void FixedUpdate()

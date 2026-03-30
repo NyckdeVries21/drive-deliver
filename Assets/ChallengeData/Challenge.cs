@@ -11,4 +11,6 @@ public class Challenge : ScriptableObject
     public string ProductAmount;
     public string Money;
     public string XP;
+    public Transform aLocation;
+    public GameObject bLocImage;
 }

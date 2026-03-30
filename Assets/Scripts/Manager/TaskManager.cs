@@ -58,6 +58,8 @@ public class TaskManager : MonoBehaviour
 
         selectedChallenge = challenge;
 
+        teleportALoc = selectedChallenge.aLocation;
+        selectedChallenge.bLocImage.SetActive(true);
         UpdateTaskUI();
 
         if (player != null && teleportALoc != null)
@@ -74,6 +76,9 @@ public class TaskManager : MonoBehaviour
     
     private void CompletedTaskInfo()
     {
+
+        selectedChallenge.bLocImage.SetActive(false);
+        selectedChallenge = null;
         if ( collectedRewards == false)
         {
             playerStats.experience += int.Parse(selectedChallenge.XP);
@@ -94,6 +99,7 @@ public class TaskManager : MonoBehaviour
     public void CloseContinueOn() // nadat je de challenge heb complete
     {
         GameManager.instance.completeTaskUI.SetActive(false);
+        GameManager.instance.questActive = true;
         questionList.SetActive(true);
         collectedRewards = false;
     }

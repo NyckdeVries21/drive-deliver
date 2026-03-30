@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Objects")]
-    [SerializeField] private GameObject questList;
     [SerializeField] public GameObject completeTaskUI;
 
     [Header("Game Activity")]
@@ -17,8 +16,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        questList.SetActive(true);
     }
 
     private void Update()
@@ -26,5 +23,4 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // shop & owned stuff
 }

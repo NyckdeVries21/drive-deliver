@@ -13,6 +13,8 @@ public class CompleteDelivery : MonoBehaviour
             completeTaskUI.SetActive(true);
             Time.timeScale = 0f;
             Debug.Log("Delivery Completed");
+
+            
         }
     }
 }
