@@ -20,3 +20,5 @@ MonoBehaviour:
   ProductAmount: 34
   Money: 450
   XP: 35
+  aLocation: {fileID: 1469532199757255303, guid: d108ddbf9a10dcb4a96578775eec8414, type: 3}
+  bLocImage: {fileID: 3561310956273901102, guid: be2df94175b610b4287fc00ffd68d26b, type: 3}

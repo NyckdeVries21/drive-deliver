@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [Header("Settings Tabs")]
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject saveDataMenu;
+    [SerializeField] private GameObject dataSettingsMenu;
 
     [Header("Game Active?")]
     [SerializeField] private GameObject inGameUI;
@@ -34,7 +35,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI geldTxt;
     [SerializeField] private TextMeshProUGUI currentCarTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
-    
 
     private void Update()
     {
@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
         {
             inGameUI.SetActive(false);
             startMenu.SetActive(true);
+            UpdateMenuTexts();
             Time.timeScale = 0f;
         }
         else
@@ -104,10 +105,25 @@ public class UIManager : MonoBehaviour
 
     public void SaveDataTabOpenClose() // save data tab
     {
-        if (!saveDataMenu.activeSelf)
+        if (GameManager.instance.questActive == true)
         {
-            saveDataMenu.SetActive(true);
-        } else {saveDataMenu.SetActive(false); }
+            if (!saveDataMenu.activeSelf)
+            {
+                saveDataMenu.SetActive(true);
+            }
+            else { saveDataMenu.SetActive(false); }
+        }
+        else
+        {
+            if (!dataSettingsMenu.activeSelf)
+            {
+                dataSettingsMenu.SetActive(true);
+            }
+            else
+            {
+                dataSettingsMenu.SetActive(false);
+            }
+        }
     }
 
     public void OpenTaskList()
@@ -134,6 +150,20 @@ public class UIManager : MonoBehaviour
             pInvStatsList.SetActive(true);
         }
         else { pInvStatsList.SetActive(false); }
+    }
+
+    public void GoToMenu()
+    {
+        if (!startMenu.activeSelf)
+        {
+            questMenu.SetActive(false);
+            startMenu.SetActive(true);
+            GameManager.instance.questActive = false;
+        }
+        else
+        {
+            startMenu.SetActive(false);
+        }
     }
 
     private void UpdateMenuTexts()

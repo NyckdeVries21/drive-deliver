@@ -1,4 +1,6 @@
+using System.Collections;
 using System.IO;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +10,14 @@ public class JSONManager : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
     private string filePath;
+
+    [Header("Data Texts")]
+    [SerializeField] private TextMeshProUGUI inGameDataTxt;
+    [SerializeField] private TextMeshProUGUI outGameDataTxt;
+
+    [Header("Data Background")]
+    [SerializeField] private GameObject inGameDataBG;
+    [SerializeField] private GameObject outGameDataBG;
 
     private void Start()
     {   
@@ -19,6 +29,15 @@ public class JSONManager : MonoBehaviour
         string json = JsonUtility.ToJson(playerStats, true);
         File.WriteAllText(filePath, json);
         Debug.Log("Data Saved" + json);
+
+        if (GameManager.instance.questActive)
+        {
+            StartCoroutine(InGameMessage("Data Saved!"));
+        }
+        else
+        {
+            StartCoroutine(OutGameMessage("Data Saved!"));
+        }
     }
 
     public void LoadData()
@@ -28,6 +47,15 @@ public class JSONManager : MonoBehaviour
             string json = File.ReadAllText(filePath);
             JsonUtility.FromJsonOverwrite(json, playerStats);
             Debug.Log("Laad de shit");
+        }
+
+        if (GameManager.instance.questActive)
+        {
+            StartCoroutine(InGameMessage("Loading Completed!"));
+        }
+        else
+        {
+            StartCoroutine(OutGameMessage("Loading Completed!"));
         }
     }
 
@@ -43,5 +71,35 @@ public class JSONManager : MonoBehaviour
         {
             File.Delete(filePath);
         }
+
+        if (GameManager.instance.questActive)
+        {
+            StartCoroutine(InGameMessage("Data Deleted!"));
+        }
+        else
+        {
+            StartCoroutine(OutGameMessage("Data Deleted!"));
+        }
+    }
+
+    IEnumerator OutGameMessage(string message)
+    {
+        outGameDataBG.SetActive(true);
+        outGameDataTxt.text = message;
+
+        yield return new WaitForSeconds(3f);
+
+        outGameDataBG.SetActive(false);
+    }
+
+
+    IEnumerator InGameMessage(string message)
+    {
+        inGameDataBG.SetActive(true);
+        inGameDataTxt.text = message;
+
+        yield return new WaitForSeconds(3f);
+
+        inGameDataBG.SetActive(false);
     }
 }

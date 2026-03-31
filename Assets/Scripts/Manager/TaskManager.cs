@@ -64,7 +64,7 @@ public class TaskManager : MonoBehaviour
 
         if (player != null && teleportALoc != null)
         {
-            player.transform.position = teleportALoc.position;
+            player.transform.position = teleportALoc.transform.position;
         }
     }
 
@@ -76,7 +76,6 @@ public class TaskManager : MonoBehaviour
     
     private void CompletedTaskInfo()
     {
-
         selectedChallenge.bLocImage.SetActive(false);
         selectedChallenge = null;
         if ( collectedRewards == false)

@@ -63,6 +63,8 @@ public class Movement : MonoBehaviour
         if(GameManager.instance.questActive == false)
         {
             currentSpeed = 0;
+            rb.transform.position = Vector3.zero;
+            rb.transform.rotation = Quaternion.identity;
         }
     }
 
