@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     [Header("Game Activity")]
     public bool questActive = false;
 
+    [Header("ChallengeObjects")]
+    public Transform[] spawnLocations;
+    public GameObject[] deliverObjects;
+    public GameObject[] canvases;
+
+
+
     private void Start()
     {
         if (instance == null)
@@ -21,6 +28,21 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    public Transform GetLocation(int index)
+    {
+        return spawnLocations[index];
+    }
+
+    public GameObject GetDeliverObject(int index)
+    {
+        return deliverObjects[index];
+    }
+
+    public GameObject GetCanvas(int index)
+    {
+        return canvases[index];
     }
 
 }

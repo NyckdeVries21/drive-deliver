@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97faf3bf3f352141bf84900c431c1dc, type: 3}
-  m_Name: Farm
+  m_Name: Potato Farm - DailMarket
   m_EditorClassIdentifier: Assembly-CSharp::Challenge
-  ACompanyname: FarmingBread
-  BCompanyname: Bakery Ben
+  ACompanyname: Potato Farm
+  BCompanyname: DailyMarket
   Distance: 23
-  TaskToComplete: Drive
-  ProductName: Bread
-  ProductAmount: 45
-  Money: 150
-  XP: 14
-  aLocation: {fileID: 1469532199757255303, guid: d108ddbf9a10dcb4a96578775eec8414, type: 3}
-  bLocImage: {fileID: 3561310956273901102, guid: be2df94175b610b4287fc00ffd68d26b, type: 3}
+  TaskToComplete: 'Deliver: '
+  ProductName: Lights
+  ProductAmount: 10
+  Money: 250
+  XP: 45
+  locationIndex: 5
+  deliverIndex: 10
+  canvasIndex: 10

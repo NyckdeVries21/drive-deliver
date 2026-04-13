@@ -27,6 +27,20 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pXPLevel;
     [SerializeField] private TextMeshProUGUI pExperience;
 
+
+    [Header("Whole Map Texts")]
+    [SerializeField] private TextMeshProUGUI aLoc;
+    [SerializeField] private TextMeshProUGUI bLoc;
+    [SerializeField] private TextMeshProUGUI distance;
+    [SerializeField] private TextMeshProUGUI productName;
+    [SerializeField] private TextMeshProUGUI amount;
+    [SerializeField] private TextMeshProUGUI reward;
+
+    [Header("Whole Map - Player")]
+    [SerializeField] private TextMeshProUGUI pMoney;
+    [SerializeField] private TextMeshProUGUI pXP;
+    [SerializeField] private TextMeshProUGUI gameTime;
+
     [Header("Checks")]
     private bool collectedRewards;
     private void Start()
@@ -58,8 +72,13 @@ public class TaskManager : MonoBehaviour
 
         selectedChallenge = challenge;
 
-        teleportALoc = selectedChallenge.aLocation;
-        selectedChallenge.bLocImage.SetActive(true);
+        teleportALoc = GameManager.instance.GetLocation(challenge.locationIndex);
+
+        GameObject deliver = GameManager.instance.GetDeliverObject(challenge.deliverIndex);
+        GameObject canvas = GameManager.instance.GetCanvas(challenge.canvasIndex);
+
+        deliver.SetActive(true);
+        canvas.SetActive(true);
         UpdateTaskUI();
 
         if (player != null && teleportALoc != null)
@@ -76,23 +95,30 @@ public class TaskManager : MonoBehaviour
     
     private void CompletedTaskInfo()
     {
-        selectedChallenge.bLocImage.SetActive(false);
-        selectedChallenge = null;
+        if (selectedChallenge == null) return;
+        GameObject deliver = GameManager.instance.GetDeliverObject(selectedChallenge.deliverIndex);
+        GameObject canvas = GameManager.instance.GetCanvas(selectedChallenge.canvasIndex);
+
+        deliver.SetActive(false);
+        canvas.SetActive(false);
+
         if ( collectedRewards == false)
         {
-            playerStats.experience += int.Parse(selectedChallenge.XP);
-            playerStats.moneyAmount += int.Parse(selectedChallenge.Money);
+            playerStats.experience += selectedChallenge.XP;
+            playerStats.moneyAmount += selectedChallenge.Money;
             collectedRewards = true;
         }
         
 
         playerStats.LevelUpSystem();
-        geldTxt.text = selectedChallenge.Money;
+        geldTxt.text = "" + selectedChallenge.Money;
         dLocTxt.text = selectedChallenge.BCompanyname;
         // timeTxt.text = uiManager.deliverDuration;
 
         pXPLevel.text = "" + playerStats.experienceLevel;
         pExperience.text = playerStats.experience + "/" + playerStats.xpToLevelUp;
+
+        selectedChallenge = null;
     }
 
     public void CloseContinueOn() // nadat je de challenge heb complete
@@ -101,5 +127,19 @@ public class TaskManager : MonoBehaviour
         GameManager.instance.questActive = true;
         questionList.SetActive(true);
         collectedRewards = false;
+    }
+
+    public void UpdateWholeMapTexts()
+    {
+        aLoc.text = selectedChallenge.ACompanyname;
+        bLoc.text = selectedChallenge.BCompanyname;
+        distance.text = selectedChallenge.Distance;
+        productName.text = selectedChallenge.ProductName;
+        amount.text = "" + selectedChallenge.ProductAmount;
+        reward.text = "Cash | XP: " + selectedChallenge.Money + "|" + selectedChallenge.XP;
+        pMoney.text = playerStats.moneyAmount + "";
+        pExperience.text = playerStats.experience + "";
+        gameTime.text = timeTxt.text;
+
     }
 }

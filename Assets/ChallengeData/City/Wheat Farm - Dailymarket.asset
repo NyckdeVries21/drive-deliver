@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97faf3bf3f352141bf84900c431c1dc, type: 3}
-  m_Name: SteelFactory
+  m_Name: Wheat Farm - Dailymarket
   m_EditorClassIdentifier: Assembly-CSharp::Challenge
-  ACompanyname: SteelBuilders
-  BCompanyname: ToiletFixers
-  Distance: 21
+  ACompanyname: Wheat Farm
+  BCompanyname: DailyMarket
+  Distance: 23
   TaskToComplete: Drive
-  ProductName: Steelpipes
-  ProductAmount: 34
-  Money: 450
-  XP: 35
-  aLocation: {fileID: 1469532199757255303, guid: d108ddbf9a10dcb4a96578775eec8414, type: 3}
-  bLocImage: {fileID: 3561310956273901102, guid: be2df94175b610b4287fc00ffd68d26b, type: 3}
+  ProductName: Lights
+  ProductAmount: 10
+  Money: 250
+  XP: 45
+  locationIndex: 1
+  deliverIndex: 10
+  canvasIndex: 10

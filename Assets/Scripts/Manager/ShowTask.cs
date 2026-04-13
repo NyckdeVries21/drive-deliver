@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class ShowTask : MonoBehaviour
     [SerializeField] private TextMeshProUGUI productAmount;
     [SerializeField] private TextMeshProUGUI rewards;
 
-    [SerializeField] public Challenge challenge;
+    [SerializeField] private List<Challenge> challenges;
+    private Challenge currentChallenge;
 
     [SerializeField] private GameObject map;
 
@@ -21,6 +23,13 @@ public class ShowTask : MonoBehaviour
     {
         taskManager = FindAnyObjectByType<TaskManager>();
 
+        currentChallenge = challenges[Random.Range(0, challenges.Count)];
+
+        ShowChallenge(currentChallenge);
+    }
+
+    private void ShowChallenge(Challenge challenge)
+    {
         aDeliveryCompany.text = "Start: " + challenge.ACompanyname;
         bDeliveryCompany.text = "Deliver at: " + challenge.BCompanyname;
         distance.text = challenge.Distance + "km";
@@ -28,10 +37,9 @@ public class ShowTask : MonoBehaviour
         productAmount.text = "Amount: " + challenge.ProductAmount;
         rewards.text = "Receive: " + challenge.Money + '\n' + "XP: " + challenge.XP;
     }
-
     public void SelectThisTask()
     {
-        taskManager.SelectedTask(challenge);
+        taskManager.SelectedTask(currentChallenge);
         GameManager.instance.questActive = true;
     }
 

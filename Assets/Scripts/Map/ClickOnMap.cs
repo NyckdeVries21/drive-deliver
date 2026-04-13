@@ -3,6 +3,7 @@ using UnityEngine;
 public class ClickOnMap : MonoBehaviour
 {
     [SerializeField] private GameObject map;
+    [SerializeField] private TaskManager taskManager;
 
     public void ShowMinimap()
     {
@@ -12,5 +13,6 @@ public class ClickOnMap : MonoBehaviour
     public void ShowMap()
     {
         map.SetActive(true);
+        taskManager.UpdateWholeMapTexts();
     }
 }

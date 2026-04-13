@@ -6,11 +6,14 @@ public class Challenge : ScriptableObject
     public string ACompanyname;
     public string BCompanyname;
     public string Distance;
-    public string TaskToComplete;
     public string ProductName;
-    public string ProductAmount;
-    public string Money;
-    public string XP;
-    public Transform aLocation;
-    public GameObject bLocImage;
+
+    public int ProductAmount;
+    public int Money;
+    public int XP;
+
+    [Header("IDs")]
+    public int locationIndex;
+    public int deliverIndex;
+    public int canvasIndex;
 }

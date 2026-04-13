@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97faf3bf3f352141bf84900c431c1dc, type: 3}
-  m_Name: Supermarket
+  m_Name: Wheat Farm - DailyBread
   m_EditorClassIdentifier: Assembly-CSharp::Challenge
-  ACompanyname: Light It Up
-  BCompanyname: TakeProduct
-  Distance: 23
-  TaskToComplete: Drive
-  ProductName: Lights
-  ProductAmount: 10
-  Money: 250
-  XP: 45
-  aLocation: {fileID: 1469532199757255303, guid: d108ddbf9a10dcb4a96578775eec8414, type: 3}
-  bLocImage: {fileID: 3561310956273901102, guid: be2df94175b610b4287fc00ffd68d26b, type: 3}
+  ACompanyname: Wheat Farm
+  BCompanyname: DailyBread
+  Distance: 15
+  ProductName: Wheat
+  ProductAmount: 58
+  Money: 100
+  XP: 16
+  locationIndex: 0
+  deliverIndex: 21
+  canvasIndex: 21

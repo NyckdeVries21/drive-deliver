@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject saveDataMenu;
     [SerializeField] private GameObject dataSettingsMenu;
+    [SerializeField] private GameObject startSettingsMenu;
 
     [Header("Game Active?")]
     [SerializeField] private GameObject inGameUI;
@@ -36,10 +37,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentCarTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
 
+    [Header("Info Tabs")]
+    [SerializeField] private GameObject gameInfoToPlay;
+
     private void Update()
     {
         timer += Time.deltaTime;
-        dayTime.text = hours +  ":0"+ minutes;
+        dayTime.text = hours + ":0" + minutes;
         if (minutes >= 10)
         {
             dayTime.text = hours + ":" + minutes;
@@ -48,7 +52,7 @@ public class UIManager : MonoBehaviour
         PlayerMoneyUpdate();
         ShowLevel();
 
-        if ( GameManager.instance.questActive == false)
+        if (GameManager.instance.questActive == false)
         {
             inGameUI.SetActive(false);
             startMenu.SetActive(true);
@@ -140,7 +144,7 @@ public class UIManager : MonoBehaviour
         if (!shop.activeSelf)
         {
             shop.SetActive(true);
-        } else {  shop.SetActive(false); }
+        } else { shop.SetActive(false); }
     }
 
     public void ShowPlayerInvStats()
@@ -166,6 +170,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void OpenStartSettings()
+    {
+        if (!startSettingsMenu.activeSelf)
+        {
+            startSettingsMenu.SetActive(true);
+        }
+        else
+        {
+            startSettingsMenu.SetActive(false);
+        }
+    }
+
+    public void HowToPlayScreen()
+    {
+        if ( !gameInfoToPlay.activeSelf)
+        {
+            gameInfoToPlay.SetActive(true);
+        } else
+        {
+            gameInfoToPlay.SetActive(false);
+        }
+    }
+
     private void UpdateMenuTexts()
     {
         PlayerStats playerStats = FindAnyObjectByType<PlayerStats>();
@@ -175,4 +202,6 @@ public class UIManager : MonoBehaviour
         currentCarTxt.text = player.currentCar.name;
         timeTxt.text = dayTime.text;
     }
+
+    
 }
